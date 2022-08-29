@@ -1,0 +1,65 @@
+sintaxe
+   if <comando_condicao>
+   then
+      comandos
+   elif <comando-condicao2>
+   then
+		comando2
+   else
+      comando3
+   fi
+
+test <condicao>
+   valores
+      -eq
+      -ne
+      -gt
+      -ge
+      -lt
+      -le
+   strings
+      =
+      !=
+      -n #não nula
+      -z #nula
+   arquivos
+      -f #é um arquivo
+      -d #é um diretório
+      -r
+      -w
+      -x
+      -s #possui tamanho maior que zero
+   uso
+      test "$VAR1" -gt 10  
+      ["$VAR1" -gt 10] #forma mais usada
+      [!$VAR2 = "sim"] #! é NEGACAO
+      ["$VAR1" -gt 10 -a "$VAR1" -lt 20] #-a é AND
+      ["$VAR1" -gt 10 -o "$VAR1" -lt 20] #-o é OR
+      Obs1.: AND tem preferencia sobre o OR, pode-se usar parentêses 
+      Obs2.: se o teste for verdadeiro a variável $? será 0, se falso, será 1
+
+sintaxe case
+	case $VARIAVEL in
+		padrao1)
+	 		comandos
+			;;
+		padrao2)
+			comandos
+			;;
+		*)
+			comandos
+			;;
+	esac
+
+exemplo case
+	case $CHAR in
+		[0-9])
+			echo "O caracter é um número"
+			;;
+		[A-Z])
+			echo "O caracter é uma letra maiúscula
+			;;
+		[a-z])
+			echo "O caracter é uma letra minúscula
+			;;
+	esac

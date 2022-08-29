@@ -1,0 +1,45 @@
+for
+sintaxe
+	for variavel in valor1 valor2 ...
+	do
+		comando 1
+		comando 2
+	done
+
+	for variavel in valor1 valor2 ...; do comando1; comando2; done
+
+exemplos
+	for valor in $(seq 5 10)
+	for arquivo in aluno*
+	for valor in {5..10}
+	for valor in $(seq 1 5 50)
+	for valor in {1..50..5}
+	for i in $(cat arquivo.txt)
+	for (( i=5 ; i <= 20 ; i++)) #funciona no bash
+
+while
+sintaxe
+	while <comando-condição> # se a condicao for verdadeira, entra no loop
+	do
+		comando1
+		comando2
+	done
+
+exemplos
+	while [ $x -le 20 ]
+	while [ $(ps axu | wc -l) -lt 300 ] # enquanto o # de processos for -lt 300 ...
+	while ls /var/lock/processo.lock > /dev/null # enquanto o processo ocorre ...
+
+until
+sintaxe
+	until <comando-condição> # se a condicao for falsa, entra no loop
+	do
+		comando1
+		comando2
+	done
+exemplos
+	until [ $(ps axu | wc -l) -ge 300 ]
+	until ls /var/lock/processo.lock > dev/null
+
+break -> interrompe o loop
+continue -> vai para a próxima iteração do loop
