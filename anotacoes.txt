@@ -1,4 +1,4 @@
-sequencia de comandos
+sequência de comandos
 	comando1 && comando2
 	comando1 || comando2
 	comando1 ; comando2
