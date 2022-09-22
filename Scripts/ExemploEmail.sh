@@ -18,8 +18,8 @@
 ################################################
 
 DATAHORA=$(date +%H:%M)
-ARQALUNOS="/home/ricardo/Cursos/ShellScript/arquivos/alunos2.txt"
-ADMIN=ricardo@linuxsemfronteiras.com.br
+ARQALUNOS="/home/biel/Codes/Udemy/ShellScript_Ricardo_Prudenciato/arquivos/alunos2.txt"
+ADMIN=biel@bielmail.com.br
 
 # Funcao de leitura da data e hora
 

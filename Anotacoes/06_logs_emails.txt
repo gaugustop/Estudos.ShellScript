@@ -1,0 +1,54 @@
+Redirecionamento
+	comando > log.out #cria arquivo log.out e joga a saida nele 
+	comando >> log.out  #"apenda" a saída no arquivo log.out, sem apagar o que já estava nele
+	comando >> log.out >2&1 #erro vai pro mesmo arquivo da saída padrão
+	comando >> log.out 2>> logerro.out #erro vai para logerro.out
+	comando | tee -a log.out #apenda a saida (-a) em log.out e mostra na tela
+
+exec (dentro do script)
+	sem mostrar a saida na tela
+		LOG=caminho_do_log
+		exec 1>> $LOG
+		exec 2>&1
+	mostrando a saida na tela (process substituition)
+		LOG=caminho_do_log
+		exec 1>> >(tee -a "$LOG")
+		exec 2>&1
+
+rsyslog
+	/etc/rsyslog.d
+	cria um arquivo como queira, eg: scripts.config contendo
+		# Facility.priority	caminho_do_log
+		local0.*	/var/log/scripts.log
+		local1.*	/var/log/scripts.log
+		# ... #até local7
+	reinicia o rsyslog
+		systemctl restart rsyslog
+	cria o arquivo de log e muda permissoes
+		cd /var/log
+		touch scripts.log
+		chown syslog:adm scripts.log #da mesmas permissoes de syslog
+	logger
+		logger -p local0.err "teste mensagem de erro"
+		logger -p local0.warn -t [nomedatag] "nova mensagem de erro"
+		echo "iniciando o script" | logger -p local0.warn -t [$0]
+		sort $ARQALUNOS | tee -a >(logger -p local0.warn -t [$0]) #"redirecionamento online"
+
+mail
+	sudo apt-get install bsd-mailx #o original era bsd-mail, que hj é um link pro bsd-mailx
+	sudo apt-get install postfix
+	sudo dpkg-reconfigure postfix #se der pau
+	sintaxe
+		mail -s <assunto> <destinatario> < <arquivo_com_conteudo>
+		mail -s "assunto" biel@bielmail.combr < arquivo
+		echo "conteudo do e-mail" | mail -s "teste" biel
+	No script, pode-se salvar o conteudo em um arquivo ou em uma variável e depois enviar	
+
+mutt
+	dá pra configurar para usar servidores de e-mail externos
+	abt-get install mutt
+
+sendemail
+	também dá pra usar servidores externos
+	apt-get install sendemail
+	
