@@ -1,0 +1,20 @@
+Comandos de degub
+    bash -n script #testar syntaxe do script sem executar:
+    bash -x script # mostra as execuções com variáveis substituidas por valores
+        + -> execução no shell
+        ++ -> execução em um subshell
+    bash -v script # mostra a execução e resultado
+    bash -xv script # combina x e v, melhor opção, em geral!
+
+debug de dentro do script
+    entra em modo debug
+        set -x
+        set -v
+        set -xv
+    sai do modo debug (opcional)
+        set +x
+        set +v
+        set +xv
+    execução passo a passo
+        trap read DEBUG #inicio
+        trap "" DEBUG #final
